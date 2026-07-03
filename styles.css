@@ -29,6 +29,21 @@ body {
   line-height: 1.35;
 }
 
+body.is-catalog-mode {
+  background: #f4f4f4;
+}
+
+body.is-profile-mode {
+  background: #f3f3f3;
+}
+
+body.is-profile-mode .header-main,
+body.is-profile-mode .main-nav,
+body.is-profile-mode .content > section:not(.customer-profile-view),
+body.is-profile-mode .footer {
+  display: none;
+}
+
 body::before {
   position: fixed;
   inset: 0;
@@ -99,6 +114,202 @@ p {
   color: #dcdcdc;
   text-transform: none;
   font-weight: 500;
+}
+
+.customer-login,
+.customer-session {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 8px;
+  border-right: 1px solid #555555;
+}
+
+.customer-login label {
+  display: block;
+}
+
+.customer-login label span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.customer-login input {
+  width: 92px;
+  height: 27px;
+  padding: 0 8px;
+  border: 1px solid #2f2f2f;
+  color: #202020;
+  background: #ffffff;
+  font-size: 11px;
+}
+
+.customer-login button,
+.customer-session button {
+  height: 27px;
+  padding: 0 10px;
+  border: 0;
+  color: #ffffff;
+  background: var(--red);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.customer-login button[type="button"],
+.customer-session button {
+  background: #242424;
+  border: 1px solid #5c5c5c;
+}
+
+.customer-session {
+  position: relative;
+  color: #ffffff;
+  text-transform: none;
+}
+
+.account-avatar-button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 2px solid #6f6f6f;
+  border-radius: 50%;
+  background: #202020;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.account-avatar-button:hover,
+.account-avatar-button:focus-visible {
+  border-color: var(--red);
+}
+
+.account-avatar-button span,
+.account-menu-header > span {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  background: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.account-avatar-button span {
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+}
+
+.account-avatar-button img,
+.account-menu-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.account-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  width: min(300px, calc(100vw - 24px));
+  padding: 14px;
+  color: #222222;
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+  text-transform: none;
+}
+
+.account-menu-header {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.account-menu-header > span {
+  width: 52px;
+  height: 52px;
+  font-size: 15px;
+}
+
+.account-menu-header strong,
+.account-menu-header p,
+.account-menu dd,
+.account-menu dt {
+  margin: 0;
+}
+
+.account-menu-header strong {
+  display: block;
+  color: #111111;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.account-menu-header p {
+  margin-top: 3px;
+  color: #666666;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.account-menu dl {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.account-menu dl > div {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 8px;
+}
+
+.account-menu dt {
+  color: #777777;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.account-menu dd {
+  color: #222222;
+  font-size: 12px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.account-menu-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.account-menu-actions button {
+  width: 100%;
+}
+
+.website-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
 }
 
 .header-main {
@@ -285,7 +496,7 @@ p {
 
 .main-nav {
   display: grid;
-  grid-template-columns: 83px 142px 174px 114px 88px 103px 1fr;
+  grid-template-columns: 98px 135px 108px 132px 148px 84px 140px 115px;
   height: 61px;
   margin-top: 0;
   background: #252525;
@@ -303,12 +514,36 @@ p {
 }
 
 .main-nav a:hover,
-.main-nav a:focus-visible {
+.main-nav a:focus-visible,
+.main-nav a.active {
   background: var(--red);
+}
+
+body.is-catalog-mode .main-nav {
+  background: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+}
+
+body.is-catalog-mode .main-nav a {
+  min-height: 61px;
+  color: #111111;
+  border-color: #eeeeee;
+}
+
+body.is-catalog-mode .main-nav a.active {
+  color: var(--white);
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: inset 0 -5px 0 #111111;
 }
 
 .content {
   padding-top: 41px;
+}
+
+body.is-catalog-mode .content {
+  padding-top: 0;
 }
 
 .hero-slider {
@@ -401,6 +636,7 @@ p {
 }
 
 .feature-card {
+  cursor: pointer;
   min-height: 248px;
   padding: 86px 15px 15px;
   color: var(--white);
@@ -410,6 +646,12 @@ p {
     url("assets/product-bikes.png");
   background-repeat: no-repeat;
   background-size: auto, 200% 200%;
+}
+
+.feature-card:hover,
+.feature-card:focus-visible {
+  outline: 3px solid rgba(223, 32, 39, 0.86);
+  outline-offset: -3px;
 }
 
 .feature-card h2 {
@@ -482,6 +724,89 @@ p {
   padding-top: 31px;
 }
 
+body.is-catalog-mode .product-section {
+  padding-top: 12px;
+}
+
+.catalog-panel {
+  padding: 0 0 10px;
+}
+
+.catalog-panel[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.subcategory-filters button,
+.catalog-controls button,
+.catalog-controls select {
+  font-family: inherit;
+}
+
+.catalog-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px 18px;
+  align-items: center;
+}
+
+.subcategory-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.subcategory-filters button {
+  min-height: 36px;
+  padding: 0 18px;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #cfcfcf;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.subcategory-filters button.active,
+.subcategory-filters button:hover,
+.subcategory-filters button:focus-visible {
+  color: var(--white);
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.catalog-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.catalog-controls label {
+  display: flex;
+  align-items: center;
+  color: #111111;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.catalog-controls select {
+  min-width: 190px;
+  height: 38px;
+  margin-left: 8px;
+  padding: 0 12px;
+  color: #111111;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #d0d0d0;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .product-tabs {
   display: flex;
   align-items: center;
@@ -529,6 +854,8 @@ p {
   min-height: 360px;
   padding: 0 15px 17px;
   background: var(--white);
+  border: 1px solid #e7e7e7;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .badge {
@@ -800,6 +1127,15 @@ p {
   clip-path: polygon(0 0, 100% 0, 78% 70%, 12% 70%);
 }
 
+.product-card a.is-out-of-stock {
+  background: #6f6f6f;
+}
+
+.product-card a.is-out-of-stock:hover,
+.product-card a.is-out-of-stock:focus-visible {
+  background: #4f4f4f;
+}
+
 .banner-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1027,9 +1363,229 @@ p {
   margin: 0;
 }
 
+.customer-profile-view {
+  padding: 26px 0 44px;
+}
+
+.profile-shell {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.profile-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  color: #ffffff;
+  background: #242424;
+}
+
+.profile-heading p {
+  margin-bottom: 4px;
+  color: #e1e1e1;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.profile-heading h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.profile-heading button,
+.profile-actions button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 0;
+  color: #ffffff;
+  background: var(--red);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.profile-heading button {
+  background: #ffffff;
+  color: #242424;
+}
+
+.profile-form,
+.change-password-form {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.change-password-form {
+  border-top: 1px solid var(--line);
+}
+
+.change-password-form h2 {
+  margin: 0;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.profile-photo-field {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.profile-photo-preview {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  overflow: hidden;
+  color: #ffffff;
+  background: #2b2b2b;
+  border: 4px solid #f0f0f0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.profile-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-field label,
+.profile-grid label {
+  display: grid;
+  gap: 7px;
+  color: #333333;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.profile-photo-field p,
+.profile-message {
+  margin: 0;
+  color: #666666;
+  font-size: 12px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.profile-grid input,
+.profile-photo-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid #cfcfcf;
+  background: #ffffff;
+  font-size: 13px;
+}
+
+.password-control {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 72px;
+}
+
+.password-control input {
+  border-right: 0;
+}
+
+.password-control button {
+  border: 1px solid #cfcfcf;
+  color: #ffffff;
+  background: #333333;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.rider-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #d5d5d5;
+}
+
+.rider-types legend {
+  padding: 0 6px;
+  color: #333333;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.rider-types label,
+.consent-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 10px;
+  background: #f2f2f2;
+  color: #333333;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.consent-line {
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 10px 12px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile-actions button[type="button"] {
+  color: #ffffff;
+  background: #2c2c2c;
+}
+
+.profile-message.is-error {
+  color: var(--red-dark);
+  font-weight: 800;
+}
+
+.profile-message.is-success {
+  color: #156b2f;
+  font-weight: 800;
+}
+
 @media (max-width: 980px) {
   .wrap {
     max-width: calc(100vw - 24px);
+  }
+
+  .topbar {
+    height: auto;
+  }
+
+  .topbar-inner {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  .customer-login,
+  .customer-session {
+    min-height: 45px;
+    padding-right: 8px;
   }
 
   .header-main {
@@ -1068,6 +1624,10 @@ p {
     grid-template-columns: 1fr 1fr;
   }
 
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
   .info-panels > article {
     border-bottom: 1px solid var(--line);
   }
@@ -1089,6 +1649,29 @@ p {
     min-height: 38px;
   }
 
+  .customer-login,
+  .customer-session {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 48px;
+    padding: 8px;
+    border-left: 1px solid #2f2f2f;
+  }
+
+  .customer-login input {
+    width: 130px;
+  }
+
+  .profile-heading,
+  .profile-photo-field {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-heading {
+    display: grid;
+  }
+
   .logo {
     height: auto;
   }
@@ -1096,8 +1679,8 @@ p {
   .main-nav,
   .feature-tiles,
   .product-grid,
-  .banner-row,
-  .info-panels,
+    .banner-row,
+    .info-panels,
   .footer-main {
     grid-template-columns: 1fr;
   }
@@ -1114,6 +1697,14 @@ p {
 
   .product-tabs span {
     height: 44px;
+  }
+
+  .catalog-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-controls {
+    justify-content: flex-start;
   }
 
   .footer-main {
