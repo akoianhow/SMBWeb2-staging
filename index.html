@@ -18,7 +18,8 @@
       <div class="wrap topbar-inner">
         <nav aria-label="Utility navigation">
           <a href="#contact">Contact Us</a>
-          <a href="#services">Book Service</a>
+          <a href="services.html">Book Service</a>
+          <a href="survey.html">Survey</a>
         </nav>
         <div class="topbar-options">
           <span>English</span>
@@ -85,7 +86,7 @@
       <div class="lock-box" aria-hidden="true">Lock</div>
     </div>
 
-    <nav class="wrap main-nav" aria-label="Product categories" data-category-nav-list>
+    <nav class="wrap main-nav" aria-label="Website navigation" data-category-nav-list>
     </nav>
 
     <main id="top" class="wrap content">
@@ -210,6 +211,7 @@
           <h1>Bikes, Parts & Bike Service</h1>
           <span>Message us to confirm stock, prices, service queue, and Shopee/Lazada orders.</span>
           <a href="#contact">Check Stock</a>
+          <a href="/community" data-community-link>Community</a>
         </div>
         <div class="slide-pages" aria-hidden="true">
           <span class="active">1</span>
@@ -248,15 +250,15 @@
         <article id="services" class="feature-card feature-services">
           <h2>Services</h2>
           <p>Bike wash, tune-up, overhaul, diagnostics, repairs, and upgrade labor.</p>
-          <a href="#contact">Book Service</a>
+          <a href="services.html">View Services</a>
         </article>
       </section>
 
       <section id="products" class="product-section">
         <div class="product-tabs" aria-label="Product lists" data-home-products>
-          <span class="active">New Arrivals</span>
-          <span>Popular</span>
-          <span>Service Picks</span>
+          <button class="active" type="button" data-home-product-filter="new" aria-pressed="true">New Arrivals</button>
+          <button type="button" data-home-product-filter="popular" aria-pressed="false">Popular</button>
+          <button type="button" data-home-product-filter="sale" aria-pressed="false">Promos</button>
         </div>
 
         <div class="catalog-panel" data-catalog-panel hidden>
@@ -297,7 +299,7 @@
         <article class="sale-banner banner-shoes">
           <h2>Services</h2>
           <p>Wash, tune-up, overhaul, repairs, and upgrades by queue confirmation.</p>
-          <a href="#contact">Book Service</a>
+          <a href="services.html">View Services</a>
         </article>
       </section>
 
@@ -340,12 +342,138 @@
           <a href="#tires">Tires and tubes</a>
           <a href="#apparel">Cycling clothing</a>
           <a href="#helmets">Helmets and sunglasses</a>
-          <a href="#services">Services</a>
+          <a href="services.html">Services</a>
           <a href="#contact">Shopee/Lazada orders</a>
           <a href="#contact">Contact the shop</a>
         </article>
       </section>
+
+      <section id="community" class="community-section" data-community-view hidden>
+        <div class="community-heading">
+          <div>
+            <p>Community Discussions</p>
+            <h1>Ask bike questions, share ride updates, and get SarapMagBike staff answers.</h1>
+          </div>
+          <button type="button" data-community-start>Start Discussion</button>
+        </div>
+
+        <div class="community-layout">
+          <aside class="community-sidebar">
+            <div class="community-login-card" data-community-guest-card>
+              <h2>Join the discussion</h2>
+              <p>Guests can read approved discussions. Log in or create an account to post, reply, like, report, or upload photos.</p>
+              <button type="button" data-community-login>Log in</button>
+              <button type="button" data-community-register>Create account</button>
+            </div>
+            <div class="community-filters">
+              <label>
+                Search
+                <input type="search" data-community-search placeholder="Bike questions, rides, services">
+              </label>
+              <label>
+                Category
+                <select data-community-category>
+                  <option value="all">All categories</option>
+                </select>
+              </label>
+            </div>
+          </aside>
+
+          <div class="community-feed">
+            <form class="community-composer" data-community-composer>
+              <textarea name="body" maxlength="2000" placeholder="What’s your bike question?"></textarea>
+              <p data-community-warning>Do not post order numbers, payment details, phone numbers, addresses, or private service concerns.</p>
+              <div class="community-composer-categories" data-community-composer-categories aria-label="Discussion categories"></div>
+              <div class="community-photo-previews" data-community-photo-previews aria-label="Selected photos"></div>
+              <div class="community-composer-actions">
+                <label>
+                  Photo
+                  <input type="file" name="photos" accept="image/jpeg,image/png,image/webp" multiple>
+                </label>
+                <button type="submit">Post</button>
+              </div>
+              <p class="community-message" data-community-message role="status"></p>
+            </form>
+            <div class="community-posts" data-community-posts>
+              <article class="community-state-card">
+                <h3>Loading Community</h3>
+                <p>Checking approved SarapMagBike discussions.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <div class="community-auth-prompt" data-community-auth-prompt hidden>
+      <div role="dialog" aria-modal="true" aria-labelledby="community-auth-title">
+        <h2 id="community-auth-title">Please log in or create an account to join the discussion.</h2>
+        <p>Guests can read approved posts, but an account is required to start discussions, reply, like, report, or upload photos.</p>
+        <div>
+          <button type="button" data-community-prompt-login>Log in</button>
+          <button type="button" data-community-prompt-register>Create account</button>
+          <button type="button" data-community-prompt-close>Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="community-thread-modal" data-community-thread-modal hidden>
+      <div role="dialog" aria-modal="true" aria-labelledby="community-thread-title">
+        <div class="community-thread-header">
+          <div>
+            <p>Discussion Thread</p>
+            <h2 id="community-thread-title">Community replies</h2>
+          </div>
+          <button type="button" data-community-thread-close>Close</button>
+        </div>
+        <div class="community-thread-content" data-community-thread-content></div>
+      </div>
+    </div>
+
+    <div class="community-photo-modal" data-community-photo-modal hidden>
+      <div role="dialog" aria-modal="true" aria-label="Post photo viewer">
+        <div class="community-photo-stage">
+          <button class="community-photo-close" type="button" data-community-photo-close aria-label="Close photo viewer">x</button>
+          <button class="community-photo-nav community-photo-prev" type="button" data-community-photo-prev aria-label="Previous photo">‹</button>
+          <figure>
+            <img data-community-photo-viewer-image alt="Post photo">
+            <figcaption data-community-photo-counter></figcaption>
+          </figure>
+          <button class="community-photo-nav community-photo-next" type="button" data-community-photo-next aria-label="Next photo">›</button>
+        </div>
+        <aside class="community-photo-panel" data-community-photo-panel></aside>
+      </div>
+    </div>
+
+    <div class="community-edit-modal" data-community-edit-modal hidden>
+      <div role="dialog" aria-modal="true" aria-labelledby="community-edit-title">
+        <div class="community-thread-header">
+          <div>
+            <p>Edit Post</p>
+            <h2 id="community-edit-title">Update your discussion</h2>
+          </div>
+          <button type="button" data-community-edit-close>Close</button>
+        </div>
+        <form class="community-edit-form" data-community-edit-form>
+          <div class="community-edit-author" data-community-edit-author></div>
+          <div class="community-edit-media" data-community-edit-media></div>
+          <textarea name="body" maxlength="2000" required></textarea>
+          <div class="community-edit-actions">
+            <button type="submit" data-community-edit-save disabled>Save Post</button>
+            <button type="button" data-community-edit-cancel>Close</button>
+          </div>
+          <div class="community-edit-confirm" data-community-edit-confirm hidden>
+            <p>You have unsaved changes.</p>
+            <div>
+              <button type="button" data-community-edit-confirm-save>Save changes</button>
+              <button type="button" data-community-edit-confirm-discard>Discard changes</button>
+              <button type="button" data-community-edit-confirm-keep>Keep editing</button>
+            </div>
+          </div>
+          <p class="community-message" data-community-edit-message role="status"></p>
+        </form>
+      </div>
+    </div>
 
     <footer id="footer" class="footer">
       <div class="wrap footer-main">
@@ -355,7 +483,8 @@
         <div>
           <h2>Information</h2>
           <a href="#products">New products</a>
-          <a href="#services">Bike service</a>
+          <a href="services.html">Bike service</a>
+          <a href="survey.html">Customer survey</a>
           <a href="#online">Online orders</a>
           <a href="#contact">Contact us</a>
         </div>
@@ -368,16 +497,16 @@
         </div>
         <div>
           <h2>Follow Us</h2>
-          <a href="https://www.facebook.com/search/top?q=sarapmagbike" target="_blank" rel="noreferrer">Facebook</a>
-          <a href="#footer">Instagram</a>
-          <a href="#footer">YouTube</a>
+          <a href="https://www.facebook.com/sarapmagbikeshop" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="https://www.instagram.com/sarapmagbike.shop" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.youtube.com/ianhow" target="_blank" rel="noreferrer">YouTube</a>
         </div>
         <div id="contact">
           <h2>Store Information</h2>
           <p>SarapMagBike Shop, QC | Pampanga</p>
           <p>Stocks, prices, and service queue may change:</p>
           <strong>Message us on Facebook</strong>
-          <a href="mailto:hello@sarapmagbike.com">hello@sarapmagbike.com</a>
+          <a href="mailto:admin@sarapmagbike.com">admin@sarapmagbike.com</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -389,6 +518,6 @@
     </footer>
 
     <script src="config.js?v=20260703-staging-api"></script>
-    <script src="script.js?v=20260703-customer-account-catalog"></script>
+    <script src="script.js?v=20260704-scramble-labels"></script>
   </body>
 </html>
